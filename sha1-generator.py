@@ -12,7 +12,7 @@ for j in xrange(0, 80):
       f = "b ^ c ^ d"
       k = 0xCA62C1D6
     if j < 16:
-      print "var w%s:uint = strToInt(input, i + %s);" % (j, j * 4)
+      print "var w%s:uint = byteInput.readUnsignedInt();" % j
     else:
       print "var w%s:uint = w%s ^ w%s ^ w%s ^ w%s; w%s = (w%s << 1) | (w%s >>> 31);" % (j, j - 3, j - 8, j - 14, j - 16, j, j, j)
     print "tmp = ((a << 5) | (a >>> 27)) + (%s) + e + 0x%08X + w%s; " \

@@ -1,21 +1,28 @@
 package {
+  import flash.utils.ByteArray;
+
   public function sha1(input:String):String {
-    var originalLength:uint = input.length;
+    var byteInput:ByteArray = new ByteArray();
+    byteInput.endian = "bigEndian";
+    byteInput.writeUTFBytes(input);
+
+    var originalLength:uint = byteInput.length;
     var i:uint;
 
     // sha-1 requires a single bit be appended to the input
-    input += "\x80";
+    byteInput.writeByte(0x80);
 
     // sha-1 adds a 64-bit integer that has the size
     // BUT enough zeros need to be added so that they'll be at the end of a chunk
-    var zerosNeeded:uint = Math.ceil((input.length + 8) / 64) * 64 - input.length - 8;
+    var zerosNeeded:uint = Math.ceil((byteInput.length + 8) / 64) * 64 - byteInput.length - 8;
     for (i = 0; i < zerosNeeded; i++) {
-      input += "\x00";
+      byteInput.writeByte(0x00);
     }
 
     // append the original size of the input
     // the size is in bits, not bytes, so we have to do some bit-shifting to fit them
-    input += intToStr(originalLength >>> 29) + intToStr(originalLength << 3);
+    byteInput.writeUnsignedInt(originalLength >>> 29);
+    byteInput.writeUnsignedInt(originalLength << 3);
 
     // set up initial variables
     var h0:uint = 0x67452301;
@@ -24,7 +31,7 @@ package {
     var h3:uint = 0x10325476;
     var h4:uint = 0xC3D2E1F0;
     
-    for (i = 0; i < input.length; i += 64) {
+    for (i = 0, byteInput.position = 0; i < byteInput.length; i += 64) {
       // set up variables for this chunk
       var a:uint = h0;
       var b:uint = h1;
@@ -34,37 +41,37 @@ package {
       var tmp:uint;
 
       // this does all the heavy processing on the input
-      var w0:uint = strToInt(input, i + 0);
+      var w0:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w0; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w1:uint = strToInt(input, i + 4);
+      var w1:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w1; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w2:uint = strToInt(input, i + 8);
+      var w2:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w2; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w3:uint = strToInt(input, i + 12);
+      var w3:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w3; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w4:uint = strToInt(input, i + 16);
+      var w4:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w4; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w5:uint = strToInt(input, i + 20);
+      var w5:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w5; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w6:uint = strToInt(input, i + 24);
+      var w6:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w6; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w7:uint = strToInt(input, i + 28);
+      var w7:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w7; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w8:uint = strToInt(input, i + 32);
+      var w8:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w8; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w9:uint = strToInt(input, i + 36);
+      var w9:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w9; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w10:uint = strToInt(input, i + 40);
+      var w10:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w10; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w11:uint = strToInt(input, i + 44);
+      var w11:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w11; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w12:uint = strToInt(input, i + 48);
+      var w12:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w12; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w13:uint = strToInt(input, i + 52);
+      var w13:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w13; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w14:uint = strToInt(input, i + 56);
+      var w14:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w14; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
-      var w15:uint = strToInt(input, i + 60);
+      var w15:uint = byteInput.readUnsignedInt();
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w15; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
       var w16:uint = w13 ^ w8 ^ w2 ^ w0; w16 = (w16 << 1) | (w16 >>> 31);
       tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w16; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
@@ -215,12 +222,4 @@ function intToHex(num:uint):String {
   }
  
   return result;
-}
-
-function strToInt(str:String, start:int = 0):uint {
-  return (str.charCodeAt(start) << 24) | (str.charCodeAt(start + 1) << 16) | (str.charCodeAt(start + 2) << 8) | str.charCodeAt(start + 3);
-}
-
-function intToStr(num:uint):String {
-  return String.fromCharCode((num >>> 24), ((num & 0xff0000) >>> 16), ((num & 0xff00) >>> 8), (num & 0xff));
 }
