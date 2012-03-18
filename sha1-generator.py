@@ -13,12 +13,18 @@ for j in xrange(0, 80):
     else:
       f = "%s ^ %s ^ %s" % (b, c, d)
       k = 0xCA62C1D6
+
+    if k > 0x80000000:
+      k = "- 0x%08X" % (0x100000000 - k)
+    else:
+      k = "+ 0x%08X" % k
+
     if j < 16:
-      print "var w%02d:uint = byteInput.readUnsignedInt();" % j,
+      print "var w%02d:int = byteInput.readInt();" % j,
       w_access = "w%02d" % (j % 16)
     else:
       print "w%02d ^= w%02d ^ w%02d ^ w%02d;" % (j % 16, (j - 3) % 16, (j - 8) % 16, (j - 14) % 16),
       w_access = "(w%02d = (w%02d << 1) | (w%02d >>> 31))" % (j % 16, j % 16, j % 16)
-    print "%s += ((%s << 5) | (%s >>> 27)) + (%s) + 0x%08X + %s;" % (
+    print "%s += ((%s << 5) | (%s >>> 27)) + (%s) %s + %s;" % (
       e, a, a, f, k, w_access),
     print "%s = (%s << 30) | (%s >>> 2);" % (b, b, b)
