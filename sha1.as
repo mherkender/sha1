@@ -23,23 +23,26 @@ package {
     var h2:uint = 0x98BADCFE;
     var h3:uint = 0x10325476;
     var h4:uint = 0xC3D2E1F0;
+
+    var w:Array = new Array(80);
     
     for (i = 0; i < input.length; i += 64) {
       // set up variables for this chunk
-      var w:Array = [];
       var j:uint;
       var a:uint = h0;
       var b:uint = h1;
       var c:uint = h2;
       var d:uint = h3;
       var e:uint = h4;
+      var tmp:uint;
       
       // take 16 bytes of input and make 80 integers out of it
       for (j = 0; j < 16; j++) {
-        w.push(strToInt(input, i + j * 4));
+        w[j] = strToInt(input, i + j * 4);
       }
       for (j = 16; j < 80; j++) {
-        w.push(leftRotate(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1));
+        tmp = w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16];
+        w[j] = (tmp << 1) | (tmp >>> 31);
       }
 
       // this does all the heavy processing on the input
@@ -63,12 +66,12 @@ package {
           k = 0xCA62C1D6;
         }
 
-        var temp:uint = leftRotate(a, 5) + f + e + k + w[j];
+        tmp = ((a << 5) | (a >>> 27)) + f + e + k + w[j];
         e = d;
         d = c;
-        c = leftRotate(b, 30);
+        c = (b << 30) | (b >>> 2);
         b = a;
-        a = temp;
+        a = tmp;
       }
 
       h0 += a;
@@ -99,9 +102,4 @@ function strToInt(str:String, start:int = 0):uint {
 
 function intToStr(num:uint):String {
   return String.fromCharCode((num >>> 24), ((num & 0xff0000) >>> 16), ((num & 0xff00) >>> 8), (num & 0xff));
-}
-
-function leftRotate(num:uint, shift:uint):uint {
-  shift %= 32;
-  return (num << shift) | (num >>> (32 - shift));
 }
