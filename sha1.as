@@ -7,15 +7,13 @@ package {
     byteInput.writeUTFBytes(input);
 
     var originalLength:uint = byteInput.length;
-    var i:uint;
 
     // sha-1 requires a single bit be appended to the input
     byteInput.writeByte(0x80);
 
     // sha-1 adds a 64-bit integer that has the size
     // BUT enough zeros need to be added so that they'll be at the end of a chunk
-    var zerosNeeded:uint = Math.ceil((byteInput.length + 8) / 64) * 64 - byteInput.length - 8;
-    for (i = 0; i < zerosNeeded; i++) {
+    for (var i:uint = Math.ceil((byteInput.length + 8) / 64) * 64 - byteInput.length - 8; i > 0; --i) {
       byteInput.writeByte(0x00);
     }
 
@@ -128,17 +126,26 @@ package {
       h4 += e;
     }
 
-    return intToHex(h0) + intToHex(h1) + intToHex(h2) + intToHex(h3) + intToHex(h4);
+    var result:String = h4.toString(16);
+    var zeros:Array = staticZeros;
+    if (result.length < 8) {
+      result = zeros[8 - result.length] + result;
+    }
+    result = h3.toString(16) + result;
+    if (result.length < 16) {
+      result = zeros[16 - result.length] + result;
+    }
+    result = h2.toString(16) + result;
+    if (result.length < 24) {
+      result = zeros[24 - result.length] + result;
+    }
+    result = h1.toString(16) + result;
+    if (result.length < 32) {
+      result = zeros[32 - result.length] + result;
+    }
+    result = h0.toString(16) + result;
+    return result.length < 40 ? (zeros[40 - result.length] + result) : result;
   }
 }
 
-function intToHex(num:uint):String {
-  var result:String = num.toString(16);
-
-  // append zeros
-  while (result.length < 8) {
-    result = "0" + result;
-  }
- 
-  return result;
-}
+const staticZeros:Array = ["", "0", "00", "000", "0000", "00000", "000000", "0000000"];
