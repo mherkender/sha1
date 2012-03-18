@@ -2,8 +2,7 @@ package {
   import flash.utils.ByteArray;
 
   public function sha1(input:String):String {
-    var byteInput:ByteArray = new ByteArray();
-    byteInput.endian = "bigEndian";
+    var byteInput:ByteArray = staticByteArray;
     byteInput.writeUTFBytes(input);
 
     var originalLength:uint = byteInput.length;
@@ -125,6 +124,8 @@ package {
       h3 += d;
       h4 += e;
     }
+    
+    byteInput.length = 0;// cleanup
 
     var result:String = uint(h4).toString(16);
     var zeros:Array = staticZeros;
@@ -147,5 +148,10 @@ package {
     return result.length < 40 ? (zeros[40 - result.length] + result) : result;
   }
 }
+
+import flash.utils.ByteArray;
+
+const staticByteArray:ByteArray = new ByteArray();
+staticByteArray.endian = "bigEndian";
 
 const staticZeros:Array = ["", "0", "00", "000", "0000", "00000", "000000", "0000000"];
