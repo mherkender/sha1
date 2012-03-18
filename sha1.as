@@ -46,33 +46,86 @@ package {
       }
 
       // this does all the heavy processing on the input
-      for (j = 0; j < 80; j++) {
-        // every 20 numbers, the operation changes
-        // the differences are stored in these variables
-        var f:uint;
-        var k:uint;
-
-        if (j < 20) {
-          f = (b & c) | ((~b) & d);
-          k = 0x5A827999;
-        } else if (j < 40) {
-          f = b ^ c ^ d;
-          k = 0x6ED9EBA1;
-        } else if (j < 60) {
-          f = (b & c) | (b & d) | (c & d);
-          k = 0x8F1BBCDC;
-        } else {
-          f = b ^ c ^ d;
-          k = 0xCA62C1D6;
-        }
-
-        tmp = ((a << 5) | (a >>> 27)) + f + e + k + w[j];
-        e = d;
-        d = c;
-        c = (b << 30) | (b >>> 2);
-        b = a;
-        a = tmp;
-      }
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[0]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[1]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[2]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[3]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[4]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[5]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[6]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[7]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[8]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[9]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[10]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[11]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[12]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[13]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[14]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[15]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[16]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[17]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[18]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | ((~b) & d)) + e + 0x5A827999 + w[19]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[20]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[21]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[22]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[23]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[24]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[25]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[26]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[27]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[28]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[29]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[30]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[31]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[32]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[33]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[34]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[35]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[36]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[37]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[38]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0x6ED9EBA1 + w[39]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[40]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[41]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[42]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[43]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[44]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[45]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[46]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[47]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[48]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[49]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[50]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[51]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[52]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[53]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[54]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[55]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[56]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[57]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[58]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + ((b & c) | (b & d) | (c & d)) + e + 0x8F1BBCDC + w[59]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[60]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[61]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[62]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[63]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[64]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[65]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[66]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[67]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[68]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[69]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[70]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[71]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[72]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[73]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[74]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[75]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[76]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[77]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[78]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
+      tmp = ((a << 5) | (a >>> 27)) + (b ^ c ^ d) + e + 0xCA62C1D6 + w[79]; e = d; d = c; c = (b << 30) | (b >>> 2); b = a; a = tmp;
 
       h0 += a;
       h1 += b;
