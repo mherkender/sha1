@@ -2,10 +2,10 @@ package {
   import flash.utils.ByteArray;
 
   public function sha1(input:String):String {
-    var byteInput:ByteArray = staticByteArray;
+    const byteInput:ByteArray = staticByteArray;
     byteInput.writeUTFBytes(input);
 
-    var originalLength:uint = byteInput.length;
+    const originalLength:uint = byteInput.length;
 
     // sha-1 requires a single bit be appended to the input
     byteInput.writeByte(0x80);
