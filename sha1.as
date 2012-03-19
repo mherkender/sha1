@@ -53,8 +53,7 @@ package {
     var w14:int;
     var w15:int;
     
-    const len:int = byteInput.length >>> 6;
-    for (i = 0, byteInput.position = 0; i < len; ++i) {
+    for (i = byteInput.length >>> 6, byteInput.position = 0; i > 0; --i) {
       // set up variables for this chunk
       var a:int = h0;
       var b:int = h1;
