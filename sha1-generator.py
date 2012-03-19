@@ -2,13 +2,13 @@ vars = ["a", "b", "c", "d", "e"]
 for j in xrange(0, 80):
     a, b, c, d, e = vars[-j % 5:] + vars[:-j % 5] # rotate var array
     if j < 20:
-      f = "(%s & %s) | ((~%s) & %s)" % (b, c, b, d)
+      f = "%s ^ (%s & (%s ^ %s))" % (d, b, c, d)
       k = 0x5A827999
     elif j < 40:
       f = "%s ^ %s ^ %s" % (b, c, d)
       k = 0x6ED9EBA1
     elif j < 60:
-      f = "(%s & %s) | (%s & %s) | (%s & %s)" % (b, c, b, d, c, d)
+      f = "(%s & %s) | (%s & (%s | %s))" % (b, c, d, b, c)
       k = 0x8F1BBCDC
     else:
       f = "%s ^ %s ^ %s" % (b, c, d)
