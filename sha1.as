@@ -12,8 +12,17 @@ package {
 
     // sha-1 adds a 64-bit integer that has the size
     // BUT enough zeros need to be added so that they'll be at the end of a chunk
-    for (var i:uint = Math.ceil((byteInput.length + 8) / 64) * 64 - byteInput.length - 8; i > 0; --i) {
-      byteInput.writeByte(0x00);
+    var i:int = Math.ceil((originalLength + 9) / 64) * 64 - originalLength - 9;
+    for (; i >= 4; i -= 4) {
+      byteInput.writeInt(0x0);
+    }
+    if (i >= 2) {
+      byteInput.writeShort(0x0);
+      if (i === 3) {
+        byteInput.writeByte(0x0);
+      }
+    } else if (i === 1) {
+      byteInput.writeByte(0x0);
     }
 
     // append the original size of the input
@@ -44,7 +53,8 @@ package {
     var w14:int;
     var w15:int;
     
-    for (i = 0, byteInput.position = 0; i < byteInput.length; i += 64) {
+    const len:int = byteInput.length >>> 6;
+    for (i = 0, byteInput.position = 0; i < len; ++i) {
       // set up variables for this chunk
       var a:int = h0;
       var b:int = h1;
