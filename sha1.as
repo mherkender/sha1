@@ -27,6 +27,22 @@ package {
     var h2:int = -0x67452302;
     var h3:int = 0x10325476;
     var h4:int = -0x3c2d1e10;
+    var w00:int;
+    var w01:int;
+    var w02:int;
+    var w03:int;
+    var w04:int;
+    var w05:int;
+    var w06:int;
+    var w07:int;
+    var w08:int;
+    var w09:int;
+    var w10:int;
+    var w11:int;
+    var w12:int;
+    var w13:int;
+    var w14:int;
+    var w15:int;
     
     for (i = 0, byteInput.position = 0; i < byteInput.length; i += 64) {
       // set up variables for this chunk
@@ -37,22 +53,22 @@ package {
       var e:int = h4;
 
       // this does all the heavy processing on the input
-      var w00:int = byteInput.readInt(); e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + w00; b = (b << 30) | (b >>> 2);
-      var w01:int = byteInput.readInt(); d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + w01; a = (a << 30) | (a >>> 2);
-      var w02:int = byteInput.readInt(); c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + w02; e = (e << 30) | (e >>> 2);
-      var w03:int = byteInput.readInt(); b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + w03; d = (d << 30) | (d >>> 2);
-      var w04:int = byteInput.readInt(); a += ((b << 5) | (b >>> 27)) + (e ^ (c & (d ^ e))) + 0x5A827999 + w04; c = (c << 30) | (c >>> 2);
-      var w05:int = byteInput.readInt(); e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + w05; b = (b << 30) | (b >>> 2);
-      var w06:int = byteInput.readInt(); d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + w06; a = (a << 30) | (a >>> 2);
-      var w07:int = byteInput.readInt(); c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + w07; e = (e << 30) | (e >>> 2);
-      var w08:int = byteInput.readInt(); b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + w08; d = (d << 30) | (d >>> 2);
-      var w09:int = byteInput.readInt(); a += ((b << 5) | (b >>> 27)) + (e ^ (c & (d ^ e))) + 0x5A827999 + w09; c = (c << 30) | (c >>> 2);
-      var w10:int = byteInput.readInt(); e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + w10; b = (b << 30) | (b >>> 2);
-      var w11:int = byteInput.readInt(); d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + w11; a = (a << 30) | (a >>> 2);
-      var w12:int = byteInput.readInt(); c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + w12; e = (e << 30) | (e >>> 2);
-      var w13:int = byteInput.readInt(); b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + w13; d = (d << 30) | (d >>> 2);
-      var w14:int = byteInput.readInt(); a += ((b << 5) | (b >>> 27)) + (e ^ (c & (d ^ e))) + 0x5A827999 + w14; c = (c << 30) | (c >>> 2);
-      var w15:int = byteInput.readInt(); e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + w15; b = (b << 30) | (b >>> 2);
+      e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + (w00 = byteInput.readInt()); b = (b << 30) | (b >>> 2);
+      d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + (w01 = byteInput.readInt()); a = (a << 30) | (a >>> 2);
+      c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + (w02 = byteInput.readInt()); e = (e << 30) | (e >>> 2);
+      b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + (w03 = byteInput.readInt()); d = (d << 30) | (d >>> 2);
+      a += ((b << 5) | (b >>> 27)) + (e ^ (c & (d ^ e))) + 0x5A827999 + (w04 = byteInput.readInt()); c = (c << 30) | (c >>> 2);
+      e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + (w05 = byteInput.readInt()); b = (b << 30) | (b >>> 2);
+      d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + (w06 = byteInput.readInt()); a = (a << 30) | (a >>> 2);
+      c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + (w07 = byteInput.readInt()); e = (e << 30) | (e >>> 2);
+      b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + (w08 = byteInput.readInt()); d = (d << 30) | (d >>> 2);
+      a += ((b << 5) | (b >>> 27)) + (e ^ (c & (d ^ e))) + 0x5A827999 + (w09 = byteInput.readInt()); c = (c << 30) | (c >>> 2);
+      e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + (w10 = byteInput.readInt()); b = (b << 30) | (b >>> 2);
+      d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + (w11 = byteInput.readInt()); a = (a << 30) | (a >>> 2);
+      c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + (w12 = byteInput.readInt()); e = (e << 30) | (e >>> 2);
+      b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + (w13 = byteInput.readInt()); d = (d << 30) | (d >>> 2);
+      a += ((b << 5) | (b >>> 27)) + (e ^ (c & (d ^ e))) + 0x5A827999 + (w14 = byteInput.readInt()); c = (c << 30) | (c >>> 2);
+      e += ((a << 5) | (a >>> 27)) + (d ^ (b & (c ^ d))) + 0x5A827999 + (w15 = byteInput.readInt()); b = (b << 30) | (b >>> 2);
       w00 ^= w13 ^ w08 ^ w02; d += ((e << 5) | (e >>> 27)) + (c ^ (a & (b ^ c))) + 0x5A827999 + (w00 = (w00 << 1) | (w00 >>> 31)); a = (a << 30) | (a >>> 2);
       w01 ^= w14 ^ w09 ^ w03; c += ((d << 5) | (d >>> 27)) + (b ^ (e & (a ^ b))) + 0x5A827999 + (w01 = (w01 << 1) | (w01 >>> 31)); e = (e << 30) | (e >>> 2);
       w02 ^= w15 ^ w10 ^ w04; b += ((c << 5) | (c >>> 27)) + (a ^ (d & (e ^ a))) + 0x5A827999 + (w02 = (w02 << 1) | (w02 >>> 31)); d = (d << 30) | (d >>> 2);

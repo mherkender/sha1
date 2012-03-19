@@ -20,8 +20,7 @@ for j in xrange(0, 80):
       k = "+ 0x%08X" % k
 
     if j < 16:
-      print "var w%02d:int = byteInput.readInt();" % j,
-      w_access = "w%02d" % (j % 16)
+      w_access = "(w%02d = byteInput.readInt())" % j
     else:
       print "w%02d ^= w%02d ^ w%02d ^ w%02d;" % (j % 16, (j - 3) % 16, (j - 8) % 16, (j - 14) % 16),
       w_access = "(w%02d = (w%02d << 1) | (w%02d >>> 31))" % (j % 16, j % 16, j % 16)
