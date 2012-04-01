@@ -12,9 +12,9 @@ package {
 
     // sha-1 adds a 64-bit integer that has the size
     // BUT enough zeros need to be added so that they'll be at the end of a chunk
-    const newLen:uint = Math.ceil((originalLength + 9) / 64) * 64 - originalLength - 9;
-    if (newLen) {
-      byteInput.writeBytes(zeroByteArray, 0, newLen);
+    const padding:uint = (55 - originalLength) & 0x3f;
+    if (padding != 0) {
+      byteInput.writeBytes(zeroByteArray, 0, padding);
     }
 
     // append the original size of the input
