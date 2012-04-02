@@ -14,10 +14,10 @@ for j in xrange(0, 80):
     if j < 16:
       print "var w%s:uint = byteInput.readUnsignedInt();" % j
     else:
-      print "var w%s:uint = w%s ^ w%s ^ w%s ^ w%s; w%s = (w%s << 1) | (w%s >>> 31);" % (j, j - 3, j - 8, j - 14, j - 16, j, j, j)
+      print "w%s ^= w%s ^ w%s ^ w%s; w%s = (w%s << 1) | (w%s >>> 31);" % (j % 16, (j - 3) % 16, (j - 8) % 16, (j - 14) % 16, j % 16, j % 16, j % 16)
     print "tmp = ((a << 5) | (a >>> 27)) + (%s) + e + 0x%08X + w%s; " \
       "e = d; " \
       "d = c; " \
       "c = (b << 30) | (b >>> 2); " \
       "b = a; " \
-      "a = tmp;" % (f, k, j)
+      "a = tmp;" % (f, k, j % 16)
